@@ -1,25 +1,24 @@
-import bintray.Keys._
+releaseSettings
 
 sbtPlugin := true
 
 name := "sbt-cloudformation"
 
-organization := "com.github.tptodorov"
-
-version := "0.4.0"
+organization := "com.gilt"
 
 scalaVersion := "2.10.4"
 
 libraryDependencies += "com.amazonaws" % "aws-java-sdk-cloudformation" % "1.9.29"
 
-publishTo <<= (version) { version: String =>
-   val scalasbt = "http://scalasbt.artifactoryonline.com/scalasbt/"
-   val (name, url) = if (version.contains("-SNAPSHOT"))
-                       ("sbt-plugin-snapshots-publish", scalasbt+"sbt-plugin-snapshots")
-                     else
-                       ("sbt-plugin-releases-publish", scalasbt+"sbt-plugin-releases")
-   Some(Resolver.url(name, new URL(url))(Resolver.ivyStylePatterns))
+publishTo := {
+  val nexus = "https://nexus.gilt.com/nexus/"
+  if (isSnapshot.value)
+    Some(Resolver.url("snapshots", new java.net.URL(nexus + "content/repositories/sbt-plugin-snapshots"))(Resolver.ivyStylePatterns))
+  else
+    Some(Resolver.url("releases", new java.net.URL(nexus + "content/repositories/sbt-plugin-releases"))(Resolver.ivyStylePatterns))
 }
+
+credentials += Credentials("Sonatype Nexus Repository Manager", "nexus.gilt.com", gilt.Identities.NexusUser, gilt.Identities.NexusPassword)
 
 licenses += ("MIT", url("http://opensource.org/licenses/MIT"))
 
@@ -36,13 +35,3 @@ scriptedLaunchOpts <<= (scriptedLaunchOpts, version) { case (s,v) => s ++
 }
 
 scriptedBufferLog := false
-
-bintraySettings
-
-packageLabels in bintray := Seq("aws", "cloudformation")
-
-publishMavenStyle := false
-
-repository in bintray := "sbt-plugins"
-
-bintrayOrganization in bintray := None

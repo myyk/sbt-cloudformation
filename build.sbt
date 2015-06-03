@@ -6,9 +6,9 @@ name := "sbt-cloudformation"
 
 organization := "com.gilt"
 
-scalaVersion := "2.10.4"
+scalaVersion := "2.10.5"
 
-libraryDependencies += "com.amazonaws" % "aws-java-sdk-cloudformation" % "1.9.29"
+libraryDependencies += "com.amazonaws" % "aws-java-sdk-cloudformation" % "1.9.38"
 
 publishTo := {
   val nexus = "https://nexus.gilt.com/nexus/"

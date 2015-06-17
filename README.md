@@ -1,6 +1,8 @@
 Sbt-CloudFormation
 ==================
 
+[ ![Codeship Status for tptodorov/sbt-cloudformation](https://codeship.com/projects/372faba0-ebf9-0132-15a4-1a6982ed746d/status?branch=master)](https://codeship.com/projects/83578)
+
 SBT plugin for validation of CloudFormation templates and operating AWS CloudFormations.
 
 Setup
@@ -16,16 +18,10 @@ In your plugins.sbt add:
     
     resolvers += "SBT release"  at "http://scalasbt.artifactoryonline.com/scalasbt/sbt-plugin-releases/"
     
-    addSbtPlugin("com.github.tptodorov" % "sbt-cloudformation" % "0.3.0")
-
+    addSbtPlugin("com.github.tptodorov" % "sbt-cloudformation" % "0.5.0")
 
 In your build.sbt add:
 
-    import com.github.tptodorov.sbt.cloudformation.CloudFormation
-    import com.github.tptodorov.sbt.cloudformation.Import.Keys._
-    import com.github.tptodorov.sbt.cloudformation.Import.Configurations._
-
-    CloudFormation.defaultSettings
     // or any parameters required by your template
     stackParams in Staging := Map("NumberWithRange" -> "2", "StringWithLength" -> "longstring")
     // tag your stack

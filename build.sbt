@@ -1,10 +1,8 @@
-import bintray.Keys._
-
 sbtPlugin := true
 
 name := "sbt-cloudformation"
 
-organization := "com.github.tptodorov"
+organization := "com.github.myyk"
 
 version := "0.5.0"
 
@@ -25,12 +23,8 @@ licenses += ("MIT", url("http://opensource.org/licenses/MIT"))
 
 scalacOptions += "-deprecation"
 
-bintraySettings
-
-packageLabels in bintray := Seq("aws", "cloudformation")
+bintrayPackageLabels := Seq("aws", "cloudformation")
 
 publishMavenStyle := false
-
-repository in bintray := "sbt-plugins"
 
 bintrayOrganization in bintray := None

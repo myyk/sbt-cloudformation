@@ -16,9 +16,9 @@ Note that `AWS_DEFAULT_REGION` environment variable must also be set. For settin
 
 In your plugins.sbt add:
     
-    resolvers += "SBT release"  at "http://scalasbt.artifactoryonline.com/scalasbt/sbt-plugin-releases/"
-    
-    addSbtPlugin("com.github.tptodorov" % "sbt-cloudformation" % "0.5.0")
+    resolvers += Resolver.url("myyk-bintray-sbt-plugins", url("https://dl.bintray.com/myyk/sbt-plugins/"))(Resolver.ivyStylePatterns)
+
+    addSbtPlugin("com.github.myyk" % "sbt-cloudformation" % "0.5.1")
 
 In your build.sbt add:
 
